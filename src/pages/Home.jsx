@@ -236,24 +236,6 @@ const slideVariants = {
 };
 
 
-  // ============ FETCH FEATURED PRODUCTS ============
-  useEffect(() => {
-    const fetchFeatured = async () => {
-      try {
-        setLoadingProducts(true);
-        // ✅ Using productApi which points to the live backend
-        const res = await productApi.getActive(0, 8);
-        const content = res.data?.data?.content || res.data?.data || [];
-        setFeaturedProducts(content.slice(0, 8));
-      } catch (err) {
-        console.error("Failed to load featured products:", err);
-      } finally {
-        setLoadingProducts(false);
-      }
-    };
-    fetchFeatured();
-  }, []);
-
 
 export default function Home() {
   // Hero state
@@ -288,6 +270,26 @@ export default function Home() {
     ...HERO_SLIDES,
     HERO_SLIDES[0],
   ];
+
+
+    // ============ FETCH FEATURED PRODUCTS ============
+  useEffect(() => {
+    const fetchFeatured = async () => {
+      try {
+        setLoadingProducts(true);
+        // ✅ Using productApi which points to the live backend
+        const res = await productApi.getActive(0, 8);
+        const content = res.data?.data?.content || res.data?.data || [];
+        setFeaturedProducts(content.slice(0, 8));
+      } catch (err) {
+        console.error("Failed to load featured products:", err);
+      } finally {
+        setLoadingProducts(false);
+      }
+    };
+    fetchFeatured();
+  }, []);
+
 
   // ============ SMOOTH SCROLL HELPER ============
   const smoothScrollTo = useCallback((el, targetX, duration = 850) => {
