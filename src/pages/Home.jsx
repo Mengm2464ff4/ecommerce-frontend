@@ -277,7 +277,6 @@ export default function Home() {
     const fetchFeatured = async () => {
       try {
         setLoadingProducts(true);
-        // ✅ Using productApi which points to the live backend
         const res = await productApi.getActive(0, 8);
         const content = res.data?.data?.content || res.data?.data || [];
         setFeaturedProducts(content.slice(0, 8));
