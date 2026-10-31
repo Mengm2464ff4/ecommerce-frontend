@@ -1,0 +1,405 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   GLOBAL RESET
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    height: 100%;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #f9fafb;
+    color: #111827;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* ============================================
+   DARK MODE BODY
+   ============================================ */
+.dark body,
+.dark #root {
+    background-color: #030712;
+    /* gray-950 */
+    color: #f3f4f6;
+    /* gray-100 */
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-track {
+    background: #111827;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: #374151;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: #4b5563;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.container-app {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.card {
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+}
+
+.dark .card {
+    background: #111827;
+    border: 1px solid #1f2937;
+}
+
+.btn-primary {
+    background-color: #3b82f6;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #2563eb;
+}
+
+.btn-primary:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    background-color: #e5e7eb;
+    color: #111827;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #d1d5db;
+}
+
+.dark .btn-secondary {
+    background-color: #1f2937;
+    color: #f3f4f6;
+}
+
+.dark .btn-secondary:hover {
+    background-color: #374151;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ============================================
+   FORM DEFAULTS
+   ============================================ */
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+button {
+    font-family: inherit;
+}
+
+/* ============================================
+   DARK MODE GLOBAL OVERRIDES (belt + suspenders)
+   ============================================ */
+.dark input,
+.dark textarea,
+.dark select {
+    background-color: #1f2937;
+    color: #f3f4f6;
+    border-color: #374151;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+    color: #9ca3af;
+}
+
+/* ============================================
+   SMOOTH COLOR TRANSITIONS
+   ============================================ */
+* {
+    transition-property: background-color, border-color, color;
+    transition-duration: 150ms;
+    transition-timing-function: ease;
+}
+
+/* Don't transition animations */
+.animate-spin,
+.animate-pulse,
+.animate-fade-in {
+    transition: none !important;
+}
+/* ============================================
+   DARK MODE GLOBAL OVERRIDES
+   ============================================ */
+.dark .bg-white {
+    background-color: #111827 !important;
+}
+
+.dark .bg-gray-50 {
+    background-color: #030712 !important;
+}
+
+.dark .bg-gray-100 {
+    background-color: #1f2937 !important;
+}
+
+.dark .text-gray-900 {
+    color: #f9fafb !important;
+}
+
+.dark .text-gray-800 {
+    color: #f3f4f6 !important;
+}
+
+.dark .text-gray-700 {
+    color: #d1d5db !important;
+}
+
+.dark .text-gray-600 {
+    color: #9ca3af !important;
+}
+
+.dark .text-gray-500 {
+    color: #9ca3af !important;
+}
+
+.dark .border-gray-200 {
+    border-color: #1f2937 !important;
+}
+
+.dark .border-gray-300 {
+    border-color: #374151 !important;
+}
+
+.dark .divide-gray-100> :not([hidden])~ :not([hidden]),
+.dark .divide-gray-200> :not([hidden])~ :not([hidden]) {
+    border-color: #1f2937 !important;
+}
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+
+
+ /* ============================================================ */
+ /* AUTH PAGE ANIMATIONS                                          */
+ /* ============================================================ */
+
+ /* Background waves drifting */
+ @keyframes waveDrift {
+     0% {
+         transform: translateX(0) translateY(0);
+     }
+
+     50% {
+         transform: translateX(-40px) translateY(10px);
+     }
+
+     100% {
+         transform: translateX(0) translateY(0);
+     }
+ }
+
+ /* Floating circles */
+ @keyframes float {
+
+     0%,
+     100% {
+         transform: translateY(0);
+     }
+
+     50% {
+         transform: translateY(-15px);
+     }
+ }
+
+ /* Page fade-in */
+ @keyframes fadeIn {
+     from {
+         opacity: 0;
+     }
+
+     to {
+         opacity: 1;
+     }
+ }
+
+ /* Card slide from right (Register) */
+ @keyframes slideInRight {
+     0% {
+         opacity: 0;
+         transform: translateX(60px) scale(0.98);
+     }
+
+     100% {
+         opacity: 1;
+         transform: translateX(0) scale(1);
+     }
+ }
+
+ /* Card slide from left (Login) */
+ @keyframes slideInLeft {
+     0% {
+         opacity: 0;
+         transform: translateX(-60px) scale(0.98);
+     }
+
+     100% {
+         opacity: 1;
+         transform: translateX(0) scale(1);
+     }
+ }
+
+ /* Utility classes */
+ .animate-wave {
+     animation: waveDrift 14s ease-in-out infinite;
+ }
+
+ .animate-float {
+     animation: float 6s ease-in-out infinite;
+ }
+
+ .animate-fade-in {
+     animation: fadeIn 0.6s ease-out both;
+ }
+
+ .animate-enter-right {
+     animation: slideInRight 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+ }
+
+ .animate-enter-left {
+     animation: slideInLeft 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+ }
+
+ .illustration-float {
+     animation: float 8s ease-in-out infinite;
+ }
+
+ /* Button glow pulse */
+ @keyframes pulseGlow {
+     0% {
+         box-shadow: 0 0 0 0 rgba(108, 123, 245, 0.7);
+     }
+
+     70% {
+         box-shadow: 0 0 0 14px rgba(108, 123, 245, 0);
+     }
+
+     100% {
+         box-shadow: 0 0 0 0 rgba(108, 123, 245, 0);
+     }
+ }
+
+ .btn-glow {
+     position: relative;
+ }
+
+ .btn-glow:hover {
+     animation: pulseGlow 1.6s infinite;
+ }
+
+ /* Input subtle lift on focus */
+ input:focus {
+     transform: translateY(-1px);
+ }
+
+    
