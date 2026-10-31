@@ -8,7 +8,6 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import "./styles/index.css";
 
-console.log("Google client ID:", import.meta.env.VITE_GOOGLE_CLIENT_ID);
 console.log("Current origin:", window.location.origin);
 
 const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
@@ -24,5 +23,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       </ThemeProvider>
     </BrowserRouter>
   </GoogleOAuthProvider>,
-  
+
 );
