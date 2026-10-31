@@ -356,28 +356,7 @@ export default function Home() {
     return () => clearInterval(timer);
   }, [paused, n, smoothScrollTo]);
 
-  // ============ FETCH FEATURED PRODUCTS ============
-  useEffect(() => {
-    const fetchFeatured = async () => {
-      try {
-        setLoadingProducts(true);
-        const res = await fetch(
-          "http://localhost:8080/api/products/active?page=0&size=8",
-        );
-        if (res.ok) {
-          const data = await res.json();
-          const content = data.data?.content || data.data || [];
-          setFeaturedProducts(content.slice(0, 8));
-        }
-      } catch (err) {
-        console.error("Failed to load featured products:", err);
-      } finally {
-        setLoadingProducts(false);
-      }
-    };
-    fetchFeatured();
-  }, []);
-
+ 
   // ============ PROMO AUTO-SLIDE (works on all devices) ============
   useEffect(() => {
     if (promoPaused) return;
