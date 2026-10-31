@@ -28,6 +28,7 @@ import {
 } from "lucide-react";
 import { getProductBadge, getProductDiscount } from "../utils/productBadges";
 import ProductCard from "../components/products/ProductCard";
+import { productApi } from "../api/product";
 
 // ============ HERO SLIDES ============
 const HERO_SLIDES = [
@@ -233,6 +234,26 @@ const slideVariants = {
     opacity: 0,
   }),
 };
+
+
+  // ============ FETCH FEATURED PRODUCTS ============
+  useEffect(() => {
+    const fetchFeatured = async () => {
+      try {
+        setLoadingProducts(true);
+        // ✅ Using productApi which points to the live backend
+        const res = await productApi.getActive(0, 8);
+        const content = res.data?.data?.content || res.data?.data || [];
+        setFeaturedProducts(content.slice(0, 8));
+      } catch (err) {
+        console.error("Failed to load featured products:", err);
+      } finally {
+        setLoadingProducts(false);
+      }
+    };
+    fetchFeatured();
+  }, []);
+
 
 export default function Home() {
   // Hero state
@@ -1071,100 +1092,6 @@ export default function Home() {
             variants={staggerContainer}
             className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6"
           >
-            {/* {featuredProducts.map((p) => (
-              <motion.div
-                key={p.id}
-                variants={fadeUp}
-                whileHover={{ y: -8 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <Link
-                  to={`/products/${p.id}`}
-                  className="group block bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300"
-                >
-                  <div className="relative aspect-square bg-gray-100 dark:bg-gray-800 overflow-hidden">
-                    {p.imageUrl ? (
-                      <motion.img
-                        whileHover={{ scale: 1.1 }}
-                        transition={{ duration: 0.5 }}
-                        src={`http://localhost:8080${p.imageUrl}`}
-                        alt={p.name}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <Package className="w-16 h-16 text-gray-300 dark:text-gray-600" />
-                      </div>
-                    )}
-                    {(() => {
-                      const badge = getProductBadge(p);
-                      const discount = getProductDiscount(p);
-                      return (
-                        <>
-                          {badge && (
-                            <span
-                              className={`absolute top-3 left-3 inline-flex items-center gap-1 text-xs font-medium px-2 py-1 rounded-full text-white shadow-lg ${
-                                badge === "Flash Sale" || badge === "Hot Deal"
-                                  ? "bg-red-500"
-                                  : badge === "Best Seller"
-                                    ? "bg-amber-500"
-                                    : badge === "Trending"
-                                      ? "bg-orange-500"
-                                      : "bg-gray-600"
-                              }`}
-                            >
-                              {badge}
-                            </span>
-                          )}
-                          {discount > 0 && (
-                            <span className="absolute top-3 right-3 inline-flex items-center text-xs font-bold px-2 py-1 rounded-full bg-yellow-400 text-yellow-900 shadow-lg">
-                              -{discount}%
-                            </span>
-                          )}
-                        </>
-                      );
-                    })()}
-                  </div>
-                  <div className="p-4">
-                    <p className="text-xs text-blue-600 dark:text-blue-400 font-medium mb-1 truncate">
-                      {p.categoryName || "Uncategorized"}
-                    </p>
-                    <h3 className="font-semibold text-gray-900 dark:text-white mb-2 line-clamp-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">
-                      {p.name}
-                    </h3>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="text-lg font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                          ${p.price}
-                        </span>
-                        {getProductDiscount(p) > 0 && (
-                          <span className="text-xs text-gray-400 line-through">
-                            $
-                            {(
-                              Number(p.price) /
-                              (1 - getProductDiscount(p) / 100)
-                            ).toFixed(2)}
-                          </span>
-                        )}
-                      </div>
-                      {Number(p.rating) > 0 && (
-                        <div className="flex items-center gap-1 text-yellow-500">
-                          <Star className="w-3.5 h-3.5 fill-current" />
-                          <span className="text-xs font-medium text-gray-600 dark:text-gray-400">
-                            {Number(p.rating).toFixed(1)}
-                          </span>
-                          {Number(p.ratingCount) > 0 && (
-                            <span className="text-[10px] text-gray-400">
-                              ({p.ratingCount})
-                            </span>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))} */}
             {featuredProducts.map((p) => (
               <motion.div
                 key={p.id}
