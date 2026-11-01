@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL =
-  import.meta.env.VITE_API_URL || "https://ecommerce-backend-j7c9.onrender.com/api";
+const API_BASE_URL =  "https://ecommerce-backend-j7c9.onrender.com/api";
 // FORCE NEW BUILD
 console.log("API URL:", "https://ecommerce-backend-j7c9.onrender.com/api");
 
