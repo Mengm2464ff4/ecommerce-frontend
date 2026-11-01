@@ -9,8 +9,10 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import "./styles/index.css";
 
 console.log("Current origin:", window.location.origin);
+console.log("API URL:", "https://ecommerce-backend-j7c9.onrender.com/api"); 
 
 const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <GoogleOAuthProvider clientId={googleClientId}>
     <BrowserRouter>
