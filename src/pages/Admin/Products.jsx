@@ -272,6 +272,10 @@ export default function AdminProducts() {
       imageUrl: product.imageUrl || "",
     });
     setEditingId(product.id);
+    setImageFile(null); 
+    setImagePreview(null); 
+    if (fileInputRef.current) fileInputRef.current.value = "";
+
     clearImage();
     setShowForm(true);
     window.scrollTo({ top: 0, behavior: "smooth" });
