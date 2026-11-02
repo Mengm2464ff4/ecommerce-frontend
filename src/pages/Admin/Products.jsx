@@ -98,8 +98,9 @@ const emptyForm = {
   fit: "",
   rating: "",
   ratingCount: "",
-  badge: "", // 👈 ADD
-  discountPercent: "", // 👈 ADD
+  badge: "", 
+  discountPercent: "",
+  imageUrl: "", 
 };
 
 // Add badge + discount options at the top
@@ -266,8 +267,9 @@ export default function AdminProducts() {
       fit: product.fit || "",
       rating: product.rating || "",
       ratingCount: product.ratingCount || "",
-      badge: product.badge || "", // 👈 ADD
-      discountPercent: product.discountPercent || "", // 👈 ADD
+      badge: product.badge || "", 
+      discountPercent: product.discountPercent || "", 
+      imageUrl: product.imageUrl || "",
     });
     setEditingId(product.id);
     clearImage();
@@ -803,6 +805,21 @@ export default function AdminProducts() {
                         />
                       </label>
                     )}
+                  </div>
+
+                                      <div className="mb-4">
+                    <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
+                      <ImageIcon className="w-4 h-4 text-gray-500" />
+                      Image URL (Optional)
+                    </label>
+                    <input
+                      type="text"
+                      name="imageUrl"
+                      value={form.imageUrl || ""}
+                      onChange={handleChange}
+                      placeholder="https://example.com/image.jpg"
+                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                    />
                   </div>
 
                   {imageFile && (
