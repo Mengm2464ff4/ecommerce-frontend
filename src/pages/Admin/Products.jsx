@@ -226,7 +226,7 @@ export default function AdminProducts() {
         showToast("Product created successfully");
       }
 
-      if (imageFile && productId) {
+      if (imageFile && !form.imageUrl && productId) {
         try {
           await productApi.uploadImage(productId, imageFile);
         } catch (uploadErr) {
