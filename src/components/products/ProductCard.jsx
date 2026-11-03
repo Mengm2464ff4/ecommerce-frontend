@@ -42,8 +42,11 @@ export default function ProductCard({ product }) {
       <div className="relative aspect-square bg-gray-50 dark:bg-gray-800 overflow-hidden">
         {product.imageUrl ? (
           <img
-           // NEW
-            src={`https://ecommerce-backend-j7c9.onrender.com${product.imageUrl}`}
+             src={
+              product.imageUrl?.startsWith("http")
+                ? product.imageUrl
+                : `https://ecommerce-backend-j7c9.onrender.com${product.imageUrl}`
+                }
             alt={product.name}
             onError={(e) => {
               e.currentTarget.src =
