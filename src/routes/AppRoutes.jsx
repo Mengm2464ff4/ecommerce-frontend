@@ -6,7 +6,7 @@ import Navbar from "../components/common/Navbar";
 import SubNavbar from "../components/common/SubNavbar";
 import Footer from "../components/common/Footer";
 import AdminLayout from "../components/auth/admin/AdminLayout";
-import TrustBar from "../components/common/TrustBar";
+
 
 import Home from "../pages/Home";
 import About from "../pages/About";
@@ -32,7 +32,7 @@ import Wishlist from "../pages/Wishlist";
 import OrderDetail from "../pages/OrderDetail";
 import ForgotPassword from "../components/auth/ForgotPassword";
 import VerifyEmail from "../pages/VerifyEmail";
-import Profile from "../pages/Profile"; // 👈 Adjust the path if your Profile.jsx is in a different folder
+import Profile from "../pages/Profile"; // Profile.jsx is in a different folder
 
 import Login from "../components/auth/Login";
 import Register from "../components/auth/Register";
@@ -72,7 +72,7 @@ export default function AppRoutes() {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/verify-email" element={<VerifyEmail />} />{" "}
-      {/* 👈 ADD THIS */}
+    
       {/* ================================================= */}
       {/* MY ORDERS - STANDALONE PAGE                       */}
       {/* ================================================= */}
@@ -96,7 +96,7 @@ export default function AppRoutes() {
           <div className="min-h-screen flex flex-col bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors">
             <Navbar />
             <SubNavbar />
-            <TrustBar />
+          
 
             <main className="flex-1">
               <Routes>
